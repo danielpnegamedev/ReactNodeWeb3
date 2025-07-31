@@ -7,9 +7,8 @@ const meetingRoutes = require("./routes/meeting");
 
 const app = express();
 
-// ✅ Aqui é onde você adiciona o CORS:
 app.use(cors({
-  origin: "http://localhost:5173" // frontend local (React)
+  origin: "http://localhost:5173" 
 }));
 
 app.use(bodyParser.json());

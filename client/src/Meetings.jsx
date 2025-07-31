@@ -74,7 +74,7 @@ const confirmDelete = () => {
       }
     })
     .catch(console.error)
-    .finally(() => setConfirmDeleteId(null)); // Fecha o modal
+    .finally(() => setConfirmDeleteId(null)); 
 };
 
 
@@ -145,7 +145,7 @@ const confirmUpdate = () => {
     >
       <h2 style={{ textAlign: "center", marginTop: 20 }}>Meetings</h2>
 
-      {/* Formulário de criação */}
+
       <div>
 <div style={{ marginBottom: 10 }}>
   <input
@@ -212,7 +212,6 @@ const confirmUpdate = () => {
       <hr style={{ border: "none", borderTop: "1px solid #444", margin: "24px 0" }} />
       <h2 style={{ textAlign: "center", marginTop: 20 }}>Scheduled Meetings</h2>
 
-      {/* Lista de reuniões */}
       <ul style={{ listStyle: "none", padding: 0 }}>
         {meetings.map((m) => (
           <li
@@ -346,7 +345,7 @@ const confirmUpdate = () => {
         onClick={confirmUpdate}
         style={{
           ...buttonStyle,
-          backgroundColor: "#ff9800", // laranja já usado
+          backgroundColor: "#ff9800", 
           marginRight: 10,
         }}
       >

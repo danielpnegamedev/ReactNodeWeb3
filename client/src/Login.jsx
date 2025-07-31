@@ -38,9 +38,9 @@ export default function Login() {
 
       if (response.ok) {
          setMessage("Login successful!");
-         setTimeout(() => navigate("/meetings"), 1000); // pequeno delay só pra mostrar a mensagem
+         setTimeout(() => navigate("/meetings"), 1000); 
         
-        // redirecionamento ou chamada para Meetings
+      
       } else {
         setMessage(data.message || "Login failed.");
       }
