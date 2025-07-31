@@ -47,10 +47,7 @@
 
 ### 🌐 Access the App
 
-- Open your browser and go to the URL shown in the terminal (usually `http://localhost:5173/`),
-    
-    **or** open the `index.html` file located in the root of the `client` folder.
-    
+- Open your browser and go to the URL shown in the terminal (usually `http://localhost:5173/`)
 
 ### 🧪 Usage
 
