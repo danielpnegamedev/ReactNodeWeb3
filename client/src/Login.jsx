@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
       setWalletAddress(accounts[0]);
-      setMessage("Wallet connected: " + accounts[0]);
+      setMessage("Wallet connected successfully: " + accounts[0]);
     } catch (err) {
       setMessage("Wallet connection failed.");
     }
@@ -25,10 +25,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!walletAddress) {
-      setMessage("Please connect your wallet first.");
-      return;
-    }
+
 
     try {
       const response = await fetch("http://localhost:3001/api/auth/login", {
@@ -72,7 +69,7 @@ export default function Login() {
       color: "#fff",
       borderRadius: 8,
     }}>
-      <h2>Sign In</h2>
+      <h2 style={{ textAlign: "center", marginTop: 70 }}>Connect your Wallet</h2>
 
       <button
         onClick={connectWallet}
@@ -85,49 +82,80 @@ export default function Login() {
           borderRadius: 4,
           cursor: "pointer",
           fontWeight: "bold",
-          marginBottom: 20,
+          marginBottom: 40,
+          marginTop: 30,
+          alignContent: "center",
         }}
       >
-        {walletAddress ? "Wallet Connected" : "Connect Wallet"}
+        {walletAddress ? "Wallet Connected!" : "Connect Wallet"}
       </button>
 
+      <hr style={{ border: "none", borderTop: "1px solid #464646ff", margin: "16px 0" }}/>
+
+
+
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginTop: 40, marginBottom: 12 }}>
+
+<h2 style={{ textAlign: "center" }}>Sign In</h2>
+
           <label style={labelStyle}>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={inputStyle}
-          />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        disabled={!walletAddress}
+        style={{
+          ...inputStyle,
+          opacity: !walletAddress ? 0.5 : 1,
+          pointerEvents: !walletAddress ? "none" : "auto",
+          borderColor: walletAddress ? "#1e1e1e" : "#313131ff",
+        }}
+      />
+
         </div>
         <div style={{ marginBottom: 12 }}>
           <label style={labelStyle}>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={inputStyle}
-          />
+<input
+  type="password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  required
+  disabled={!walletAddress}
+  style={{
+    ...inputStyle,
+    opacity: !walletAddress ? 0.5 : 1,
+    pointerEvents: !walletAddress ? "none" : "auto",
+    borderColor: walletAddress ? "#1e1e1e" : "#313131ff",
+  }}
+/>
+
         </div>
-        <button
-          type="submit"
-          disabled={!walletAddress}
-          style={{
-            padding: 10,
-            width: "100%",
-            backgroundColor: "#6200ea",
-            color: "#fff",
-            border: "none",
-            borderRadius: 4,
-            cursor: walletAddress ? "pointer" : "not-allowed",
-            fontWeight: "bold",
-          }}
-        >
-          Sign In
-        </button>
+<button
+  type="submit"
+  disabled={!walletAddress}
+  style={{
+    padding: 10,
+    width: "100%",
+    backgroundColor: "#6200ea",
+    color: "#fff",
+    border: "none",
+    borderRadius: 4,
+    cursor: walletAddress ? "pointer" : "not-allowed",
+    fontWeight: "bold",
+    opacity: walletAddress ? 1 : 0.6,
+  }}
+>
+  Sign In
+</button>
+
+{!walletAddress && (
+  <p style={{ textAlign: "center", fontSize: 12, color: "#bbb", marginTop: 8 }}>
+    Please connect your wallet to continue.
+  </p>
+)}
+
       </form>
 
       {message && (
